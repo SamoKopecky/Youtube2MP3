@@ -1,29 +1,52 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace YoutubeDownloader
 {
     public class Downloader
     {
-        public void DownloadSong(string url)
+        public string YoutubeDlPath { get; set; }
+        public string FFmpegPath { get; set; }
+
+        public Downloader()
         {
-            var process = new Process();
-            var youtubeDlName = "";
-            var ffmpegName = "";
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                youtubeDlName = "./binaries/linux/youtube-dl";
-                ffmpegName = "./binaries/linux/ffmpeg";
+                YoutubeDlPath = GetLinuxBinaryPath("youtube-dl");
+                FFmpegPath = GetLinuxBinaryPath("ffmpeg");
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                youtubeDlName = "./binaries/windows/youtube-dl.exe";
-                ffmpegName = "./binaries/windows/ffmpeg.exe";
+                // TODO: Windows finding of binaries
             }
-            process.StartInfo.FileName = youtubeDlName;
-            process.StartInfo.Arguments = $"{url} -x --ffmpeg-location {ffmpegName} --audio-format mp3";
-            process.StartInfo.CreateNoWindow = true;
-            process.Start();
+            else
+            {
+                throw new Exception("No binaries found");
+            }
+        }
+
+        private string GetLinuxBinaryPath(string binaryName)
+        {
+            var commonPath = $"/usr/bin/{binaryName}";
+            if (File.Exists(commonPath))
+            {
+                return commonPath;
+            }
+
+            // TODO: Handling errors
+            var whichCmd = ProcessRunner.RunProcess("/usr/bin/which", binaryName);
+            return whichCmd;
+        }
+
+
+        public string DownloadSong(string url)
+        {
+            return ProcessRunner.RunProcess(YoutubeDlPath,
+                $"{url} -x --ffmpeg-location {FFmpegPath} --audio-format mp3");
         }
     }
 }

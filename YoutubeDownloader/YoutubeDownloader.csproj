@@ -3,22 +3,5 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
-    <!--
-    <ItemGroup>
-        <EmbeddedResource Include="binaries/linux/ffmpeg"/>
-        <EmbeddedResource Include="binaries/linux/youtube-dl"/>
-        <EmbeddedResource Include="binaries/windows/ffmpeg.exe"/>
-        <EmbeddedResource Include="binaries/windows/youtube-dl.exe"/>
-    </ItemGroup>
-    -->
-
-    <ItemGroup>
-        <Content Include="binaries/linux/*">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="binaries/windows/*.exe">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
 
 </Project>

@@ -9,7 +9,8 @@ namespace ConsoleApp
         {
             Console.WriteLine("Hello World!");
             var downloader = new Downloader();
-            downloader.DownloadSong("https://www.youtube.com/watch?v=3VGS7rRT8vg");
+            var output = downloader.DownloadSong("https://www.youtube.com/watch?v=3VGS7rRT8vg");
+            Console.WriteLine(output);
         }
     }
 }
