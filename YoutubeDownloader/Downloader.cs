@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace YoutubeDownloader
@@ -29,13 +27,25 @@ namespace YoutubeDownloader
             }
         }
 
+        public Downloader(string youtubeDlPath, string fFmpegPath)
+        {
+            YoutubeDlPath = FileExists(youtubeDlPath);
+            FFmpegPath = FileExists(fFmpegPath);
+        }
+
+        private static string FileExists(string filePath)
+        {
+            if (File.Exists(filePath)) return filePath;
+
+            // Log here
+            throw new FileNotFoundException($"File on {filePath} not found");
+        }
+
+
         private string GetLinuxBinaryPath(string binaryName)
         {
             var commonPath = $"/usr/bin/{binaryName}";
-            if (File.Exists(commonPath))
-            {
-                return commonPath;
-            }
+            if (File.Exists(commonPath)) return commonPath;
 
             // TODO: Handling errors
             return ProcessRunner.RunProcess("which", binaryName);

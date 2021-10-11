@@ -35,7 +35,9 @@ namespace YoutubeDownloader
         {
             if (!string.IsNullOrEmpty(eventArgs.Data))
             {
-                _output.Append(Environment.NewLine + eventArgs.Data);
+                if (_output.Length != 0)
+                    _output.Append(Environment.NewLine);
+                _output.Append(eventArgs.Data);
             }
         }
     }
