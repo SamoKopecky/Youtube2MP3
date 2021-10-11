@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Reflection;
+using System.Linq;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace YoutubeDownloader
 {
@@ -21,7 +20,8 @@ namespace YoutubeDownloader
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                // TODO: Windows finding of binaries
+                YoutubeDlPath = GetWindowsBinaryPath("youtube-dl");
+                FFmpegPath = GetWindowsBinaryPath("ffmpeg");
             }
             else
             {
@@ -38,10 +38,14 @@ namespace YoutubeDownloader
             }
 
             // TODO: Handling errors
-            var whichCmd = ProcessRunner.RunProcess("/usr/bin/which", binaryName);
-            return whichCmd;
+            return ProcessRunner.RunProcess("which", binaryName);
         }
 
+        private string GetWindowsBinaryPath(string binaryName)
+        {
+            // TODO: Handling errors
+            return ProcessRunner.RunProcess("where", binaryName).Trim();
+        }
 
         public string DownloadSong(string url)
         {
