@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -6,8 +7,8 @@ namespace YoutubeDownloader
 {
     public class Downloader
     {
-        public string YoutubeDlPath { get; set; }
-        public string FFmpegPath { get; set; }
+        private string YoutubeDlPath { get; set; }
+        private string FFmpegPath { get; set; }
 
         public Downloader()
         {
