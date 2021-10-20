@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeDownloader", "YoutubeDownloader\YoutubeDownloader.csproj", "{DC4B9B3C-3CE1-4AC7-BEA4-381A4182383E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{39022977-631E-48BB-9E59-A73D99398421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Youtube2MP3", "Youtube2MP3\Youtube2MP3.csproj", "{39022977-631E-48BB-9E59-A73D99398421}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
