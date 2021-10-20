@@ -1,4 +1,4 @@
-# YoutubeDownloader
+# Youtube2MP3
 
 - Download your favorite song from youtube!
 - Available on Windows and Linux
