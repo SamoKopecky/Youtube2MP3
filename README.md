@@ -11,4 +11,4 @@ $ Youtube2MP3 -u https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 ## Build
 
-- `dotnet build` in Youtube2MP3 project
+- `dotnet build`
