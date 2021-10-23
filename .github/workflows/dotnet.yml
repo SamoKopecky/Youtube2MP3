@@ -11,6 +11,13 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
+    - name: Setup binary name
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      env:
+        BINARY_NAME: Youtube2MP3
+      if: ${{ matrix.os == 'windows-latest' }}
+      env:
+        BINARY_NAME: Youtube2MP3.exe
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -25,8 +32,5 @@ jobs:
       with:
         body: Relase ${{ github.refs }}
         prerelease: true
-        if: ${{ matrix.os == 'windows-latest' }}
-        files: Youtube2MP3/bin/Debug/net5.0/Youtube2MP3.exe
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        files: Youtube2MP3/bin/Debug/net5.0/Youtube2MP3
+        files: Youtube2MP3/bin/Debug/net5.0/{{ env.BINARY_NAME }}
         
