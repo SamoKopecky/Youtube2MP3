@@ -6,13 +6,11 @@ on:
       - '*'
 jobs:
   build:
-    if: ${{ matrix.os == 'ubuntu-latest' }}
-    env:
-      BINARY_NAME: Youtube2MP3
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
+        file: [Youtube2MP3, Youtube2MP3.exe]
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -28,5 +26,5 @@ jobs:
       with:
         body: Relase ${{ github.refs }}
         prerelease: true
-        files: Youtube2MP3/bin/Debug/net5.0/{{ env.BINARY_NAME }}
+        files: Youtube2MP3/bin/Debug/net5.0/${{ matrix.file }}
         
