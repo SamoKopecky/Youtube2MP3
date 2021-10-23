@@ -6,15 +6,14 @@ on:
       - '*'
 jobs:
   build:
+    if: ${{ matrix.os == 'ubuntu-latest' }}
+    env:
+      BINARY_NAME: Youtube2MP3
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-    - name: Setup binary name
-      if: ${{ matrix.os == 'ubuntu-latest' }}
-      env:
-        BINARY_NAME: Youtube2MP3
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
