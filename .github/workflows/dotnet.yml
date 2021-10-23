@@ -25,8 +25,8 @@ jobs:
       with:
         body: Relase ${{ github.refs }}
         prerelease: true
-        if: ${{ matrix.os }} == windows-latest
+        if: ${{ matrix.os == 'windows-latest' }}
         files: Youtube2MP3/bin/Debug/net5.0/Youtube2MP3.exe
-        if: ${{ matrix.os }} == ubuntu-latest
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         files: Youtube2MP3/bin/Debug/net5.0/Youtube2MP3
         
