@@ -33,5 +33,5 @@ jobs:
       with:
         body: Relase ${{ github.ref }}
         prerelease: true
-        files: Youtube2MP3/bin/Debug/net5.0/${{ matrix.file }}
+        files: Youtube2MP3/bin/Release/net5.0/${{ matrix.rid }}/publish/${{ matrix.file }}
         
