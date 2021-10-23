@@ -11,6 +11,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         file: [Youtube2MP3, Youtube2MP3.exe]
+        exclude:
+          - os: ubuntu-latest
+            file: Youtube2MP3.exe
+          - os: windows-latest
+            file: Youtube2MP3
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -24,7 +29,7 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        body: Relase ${{ github.refs }}
+        body: Relase ${{ github.ref }}
         prerelease: true
         files: Youtube2MP3/bin/Debug/net5.0/${{ matrix.file }}
         
