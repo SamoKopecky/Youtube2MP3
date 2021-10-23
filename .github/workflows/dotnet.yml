@@ -12,10 +12,10 @@ jobs:
         file: [Youtube2MP3, Youtube2MP3.exe]
         include:
           - os: ubuntu-latest
-            file: Youtube2MP3.exe
+            file: Youtube2MP3
             rid: linux-x64
           - os: windows-latest
-            file: Youtube2MP3
+            file: Youtube2MP3.exe
             rid: win-x64
     steps:
     - uses: actions/checkout@v2
