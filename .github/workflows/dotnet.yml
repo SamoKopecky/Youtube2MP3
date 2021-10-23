@@ -6,7 +6,10 @@ on:
       - '*'
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -20,4 +23,10 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
+        body: Relase ${{ github.refs }}
+        prerelease: true
+        if: ${{ matrix.os }} == windows-latest
+        files: Youtube2MP3/bin/Debug/net5.0/Youtube2MP3.exe
+        if: ${{ matrix.os }} == ubuntu-latest
         files: Youtube2MP3/bin/Debug/net5.0/Youtube2MP3
+        
