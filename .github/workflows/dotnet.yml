@@ -1,0 +1,23 @@
+name: .NET
+
+on:
+  push:
+    tags:
+      - "v*"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: Youtube2MP3/bin/Debug/net5.0/Youtube2MP3
